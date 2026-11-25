@@ -22,3 +22,5 @@ _ie: what is Buffer.from()_
 
 function aesDecrypt(encryptedMessage, secretKey, ivHex) what is ivHex？
 const { encryptedMessage, iv } = aesEncrypt(textToEncrypt, secretKey); what is iv. -- I guess it's An ID for the encryption algorithm. maybe it refers to aes_128_cbc
+
+-iv === "initialization vector"
