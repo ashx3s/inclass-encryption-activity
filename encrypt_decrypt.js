@@ -2,7 +2,9 @@
 
 // Plain text information to demo
 
+const { strictEqual } = require("assert");
 const crypto = require("crypto");
+const { text } = require("stream/consumers");
 
 // Function to encrypt a message using AES-128-CBC
 function aesEncrypt(text, secretKey) {
@@ -22,16 +24,17 @@ function aesDecrypt(encryptedMessage, secretKey, ivHex) {
   // Your implementation here
   const iv = Buffer.from(ivHex, "hex");
   const decipher = crypto.createDecipheriv("aes-128-cbc", secretKey, iv);
-
-  return (
-    decipher.update(encryptedMessage, "hex", "utf8") +
-    decipher.final("utf8")
-  );
+  const decryptedMessage = decipher.update(encryptedMessage, "hex", "utf8") + decipher.final("utf8");
+  return decryptedMessage;
 }
 
 // Test your functions
 const secretKey = Buffer.from("mysecretkey12345"); // 16-byte key (128-bit)
-const textToEncrypt = "This is a secret message!";
+//const textToEncrypt = "This is a secret message!";
+const textToEncrypt = process.argv[2];
+// if(textToEncrypt){
+
+// }
 
 // Encrypt the message
 const { encryptedMessage, iv } = aesEncrypt(textToEncrypt, secretKey);
