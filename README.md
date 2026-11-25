@@ -12,8 +12,13 @@
 
 _ie: "the text and key will be created in the code. user input is handled later"_
 
--
+-use aes_128_cbc to endcrypt the plain with the key
+
+-Use the same algorithm and key to decrypt the ciphertext from the previous step. Then compare the decrypted plaintext with the original plaintext to verify that they match.
 
 ## Key Concepts & Code to Review
 
 _ie: what is Buffer.from()_
+
+function aesDecrypt(encryptedMessage, secretKey, ivHex) what is ivHex？
+const { encryptedMessage, iv } = aesEncrypt(textToEncrypt, secretKey); what is iv. -- I guess it's An ID for the encryption algorithm. maybe it refers to aes_128_cbc
